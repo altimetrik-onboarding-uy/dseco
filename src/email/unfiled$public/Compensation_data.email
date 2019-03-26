@@ -1,0 +1,11 @@
+A new compensation was created with the following: 
+Name: {!Compensation__c.Name}
+Location: {!Compensation__c.Location__c}
+Office: {!Compensation__c.Office__c}
+Job Category: {!Compensation__c.Job_Category__c}
+Description: {!Compensation__c.Description__c}
+Amount: {!Compensation__c.Amount__c}
+Tax: {!Compensation__c.Tax__c}
+Start date: {!Compensation__c.Start_Date__c}
+End date: {!Compensation__c.End_Date__c}
+Status: {!Compensation__c.00N1U00000RYjjJ}
