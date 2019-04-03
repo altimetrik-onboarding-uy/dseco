@@ -204,34 +204,11 @@
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
-        <picklist>
-            <controllingField>Submitted__c</controllingField>
-            <picklistValues>
-                <fullName>NOT SUBMITTED</fullName>
-                <default>true</default>
-                <controllingFieldValues>unchecked</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SUBMITTED</fullName>
-                <default>false</default>
-                <controllingFieldValues>checked</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>APPROVED</fullName>
-                <default>false</default>
-                <controllingFieldValues>checked</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>REJECTED</fullName>
-                <default>false</default>
-                <controllingFieldValues>checked</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
+        <length>15</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Submitted__c</fullName>
@@ -257,7 +234,13 @@
     <label>Compensation</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Compensation__c.Research</value>
+        </filters>
         <label>All</label>
     </listViews>
     <listViews>
@@ -337,25 +320,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>APPROVED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOT SUBMITTED</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>REJECTED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SUBMITTED</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Salary</fullName>
@@ -418,25 +382,6 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>APPROVED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOT SUBMITTED</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>REJECTED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SUBMITTED</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Study</fullName>
@@ -496,25 +441,6 @@
             </values>
             <values>
                 <fullName>Michigan</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>APPROVED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOT SUBMITTED</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>REJECTED</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SUBMITTED</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
