@@ -1,0 +1,27 @@
+<aura:component>
+    <aura:attribute name="compensation" type="Compensation__c"/>
+    <aura:attribute name="isChecked" type="boolean" default="false"/>
+
+    <aura:registerEvent name="SelectCompensation" type="c:SelectCompensation"/>
+
+    <tr>
+        <td data-label="Selected">
+        <aura:if isTrue="{!v.compensation.Submitted__c}">
+            <ui:outputCheckbox value="true"/>
+            <aura:set attribute="else">
+                <ui:inputCheckbox value="{!v.isChecked}" change="{!c.selectChange}" />
+            </aura:set>
+        </aura:if>
+        </td>
+        <td data-label="Employee Name"><a onclick="{!c.editRecord}" id="{!v.compensation.Employee__r.Id}">{!v.compensation.Employee__r.Name}</a></td>
+        <td data-label="Employee Birthdate"><lightning:formattedDateTime value="{!v.compensation.Employee__r.Birthdate}" year="numeric" day="2-digit" month="long" timeZone="UTC"/></td>
+        <td data-label="Job Category">{!v.compensation.Job_Category__c}</td>
+        <td data-label="Compensation Type">{!v.compensation.RecordType.Name}</td>
+        <td data-label="Amount">{!v.compensation.Amount__c}</td>
+        <td data-label="Location">{!v.compensation.Location__c}</td>
+        <td data-label="Office">{!v.compensation.Office__c}</td>
+        <td data-label="Submitted"><ui:outputCheckbox aura:id="output" value="{!v.compensation.Submitted__c}"/></td>
+        <td data-label="Status">{!v.compensation.Status__c}</td>
+    </tr>
+
+</aura:component>

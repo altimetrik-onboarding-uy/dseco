@@ -50,6 +50,46 @@ public with sharing class TestEmployeeCompensationsController {
         
     }
 
+    @isTest
+    public static void TestSubmitComps(){
+        List<Compensation__c> comps = TestEmployeeCompensationsController.TestDataFactory();
+        List<String> compIds = new List<String>();
+        for(Compensation__c c : comps){
+            compIds.add(c.Id);
+        }
+        Test.startTest();
+        EmployeeCompensationsController.submitComps(compIds);
+        Test.stopTest();
+        List<Compensation__c> updatedComps = [SELECT Id, Submitted__c FROM Compensation__c WHERE Id IN :compIds];
+        Integer count = 0;
+        for(Compensation__c c : updatedComps){
+            if(c.Submitted__c == false){
+                count++;
+            }
+        }
+        System.assertEquals(0, count);
+    }
+
+
+    
+    @isTest
+    public static void TestNoAccessSubmitComps(){
+        List<Compensation__c> comps = TestEmployeeCompensationsController.TestDataFactory();
+        List<String> compIds = new List<String>();
+        for(Compensation__c c : comps){
+            compIds.add(c.Id);
+        }
+        User u = TestEmployeeCompensationsController.getNoAccessUser();
+        try{
+            System.runAs(u){
+                EmployeeCompensationsController.submitComps(compIds);
+            }
+        }
+        catch(NoAccessException e){
+
+        }
+    }
+
     public static List<Compensation__c> TestDataFactory(){
         List<Compensation__c> comps = new List<Compensation__c>();
         Contact employee = new Contact(LastName='Smith');
