@@ -1,0 +1,72 @@
+<aura:component controller="EmployeeCompensationsController" implements="force:appHostable">
+
+    <aura:attribute name="allCompensations" type="Compensation__c[]"/>
+    <aura:attribute name="compensations" type="Compensation__c[]"/>
+    <aura:attribute name="dataIsLoaded" type="boolean" default="false"/>
+    <aura:attribute name="selectedList" type="String[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="SelectCompensation" event="c:SelectCompensation" action="{!c.handleSelectedCompensation}"/>
+    
+
+    <lightning:card title="Employee's compensations" iconName="standard:contact">
+        <div class="slds-float_right slds-m-right_x-small">
+            <lightning:button variant="brand" label="Submit" disabled="{!v.selectedList.length==0}" onclick="{!c.submitSelectedCompensations}"/>
+            <lightning:button variant="brand" label="Export CSV" onclick="{!c.exportCsv}"/>
+          </div>
+        <div class="slds-m-bottom_small slds-m-left_x-small slds-m-right_x-small slds-float_left">
+                <lightning:select aura:id="select" name="select" label="Select a record type" onchange="{!c.onChange}">
+                        <option value="All">All</option>
+                        <option value="Research">Research</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Study">Study</option>
+                    </lightning:select>
+                    <lightning:select aura:id="selectSubmitted" name="selectSubmitted" label="Submitted?" onchange="{!c.onChange}">
+                      <option value="Both">Both</option>
+                      <option value="true">Submitted</option>
+                      <option value="false">Not Submitted</option>
+                    </lightning:select>
+        </div>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                      <tr class="slds-line-height_reset">
+                        <th scope="col">
+                          <div class="slds-truncate" title="Select"></div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Employee Name">Employee's Name</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Employee Birthdate">Employee's Birthdate</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Job Category">Job Category</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Compensation Type">Compensation Type</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Amount">Amount</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Location">Location</div>
+                        </th>
+                        <th scope="col">
+                          <div class="slds-truncate" title="Office">Office</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Submitted">Submitted</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.compensations}" var="row">
+                            <c:EmployeeCompensationsTable compensation="{!row}"/>
+                        </aura:iteration>
+                    </tbody>
+                  </table>
+    </lightning:card>
+</aura:component>

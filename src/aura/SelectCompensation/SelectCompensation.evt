@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="compensationId" type="String"/>
+    <aura:attribute name="isChecked" type="boolean"/>
+</aura:event>
